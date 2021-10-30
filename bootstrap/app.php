@@ -89,6 +89,9 @@ $app->routeMiddleware([
 $app->routeMiddleware([
     'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
 ]);
+$app->routeMiddleware([
+    'authorize' => \App\Http\Middleware\AccessMiddleware::class,
+]);
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
 ]);

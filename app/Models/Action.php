@@ -13,11 +13,11 @@ class Action extends Model
 
     public function menu()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(Menu::class, 'menu_id', 'menu_id');
     }
 
     public function accesses()
     {
-        return $this->hasMany(Access::class);
+        return $this->hasMany(Access::class, 'action_id', 'action_id');
     }
 }

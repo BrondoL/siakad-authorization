@@ -15,7 +15,7 @@ class CreateActionsTable extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->bigIncrements("action_id");
-            $table->string("action");
+            $table->string("action")->unique();
             $table->string("url")->unique();
             $table->integer("is_active")->unsigned()->default(1);
             $table->bigInteger("menu_id")->unsigned();

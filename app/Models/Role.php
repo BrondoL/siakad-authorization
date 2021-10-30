@@ -13,6 +13,6 @@ class Role extends Model
 
     public function accesses()
     {
-        return $this->hasMany(Access::class);
+        return $this->hasMany(Access::class, 'role_id', 'role_id');
     }
 }

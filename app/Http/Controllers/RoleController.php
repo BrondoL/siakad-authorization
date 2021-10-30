@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
-use App\Models\Action;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class MenuController extends Controller
+class RoleController extends Controller
 {
     public function index()
     {
-        $menus = Menu::latest()->get();
+        $roles = Role::all();
         $data = [
             'success' => true,
-            'message' => 'List Menu',
-            'data' => $menus
+            'message' => 'List Role',
+            'data' => $roles
         ];
         return response()->json($data, 200);
     }
@@ -23,7 +22,7 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'menu' => 'required|max:255|unique:menus,menu',
+            'role' => 'required|max:255|unique:roles,role',
         ]);
 
         if ($validator->fails()) {
@@ -33,32 +32,32 @@ class MenuController extends Controller
             ], 422);
         }
 
-        $menu = new Menu();
-        $menu->menu = $request->menu;
-        $menu->save();
+        $role = new Role();
+        $role->role = $request->role;
+        $role->save();
 
-        if (!$menu) {
+        if ($role) {
             return response()->json([
-                'success' => false,
-                'message' => 'Gagal create role!',
-            ], 409);
+                'success' => true,
+                'message' => 'Berhasil create role!',
+                'role'    => $role,
+            ], 201);
         }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Berhasil create menu!',
-            'menu'    => $menu,
-        ], 201);
+            'success' => false,
+            'message' => 'Gagal create role!',
+        ], 409);
     }
 
-    public function show($menu_id)
+    public function show($role_id)
     {
-        $menu = Menu::find($menu_id);
-        if ($menu) {
+        $role = Role::find($role_id);
+        if ($role) {
             return response()->json([
                 'success' => true,
-                'message' => 'Detail menu',
-                'data'    => $menu,
+                'message' => 'Detail role',
+                'data'    => $role,
             ], 200);
         }
 
@@ -68,11 +67,11 @@ class MenuController extends Controller
         ], 404);
     }
 
-    public function update(Request $request, $menu_id)
+    public function update(Request $request, $role_id)
     {
-        $menu = Menu::find($menu_id);
+        $role = Role::find($role_id);
 
-        if (!$menu) {
+        if (!$role) {
             return response()->json([
                 'success' => false,
                 'message' => "Data Not Found"
@@ -80,7 +79,7 @@ class MenuController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'menu' => 'required|max:255|unique:menus,menu,' . $menu_id . ',menu_id',
+            'role' => 'required|max:255|unique:roles,role,' . $role_id . ',role_id',
         ]);
 
         if ($validator->fails()) {
@@ -90,33 +89,32 @@ class MenuController extends Controller
             ], 422);
         }
 
-        $menu->menu = $request->menu;
-        $menu->save();
+        $role->role = $request->role;
+        $role->save();
 
         return response()->json([
             'success' => true,
-            'message' => 'Berhasil update menu!',
-            'data'    => $menu,
+            'message' => 'Berhasil update role!',
+            'data'    => $role,
         ], 200);
     }
 
-    public function destroy($menu_id)
+    public function destroy($role_id)
     {
-        $menu = Menu::find($menu_id);
+        $role = Role::find($role_id);
 
-        if (!$menu) {
+        if (!$role) {
             return response()->json([
                 'success' => false,
                 'message' => "Data Not Found"
             ], 404);
         }
-        $menu->accessAction()->delete();
-        $menu->actions()->delete();
-        $menu->delete();
+        $role->accesses()->delete();
+        $role->delete();
         return response()->json([
             'success' => true,
             'message' => 'Deleted Successfully!',
-            'data'    => $menu,
+            'data'    => $role,
         ], 200);
     }
 }

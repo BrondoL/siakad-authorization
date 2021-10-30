@@ -13,11 +13,11 @@ class Access extends Model
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role_id', 'role_id');
     }
 
     public function action()
     {
-        return $this->hasMany(Action::class);
+        return $this->hasMany(Action::class, 'action_id', 'action_id');
     }
 }
