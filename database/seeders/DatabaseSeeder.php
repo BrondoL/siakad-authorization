@@ -44,6 +44,11 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'menu' => "User Management",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
         $actions = [
             [
@@ -186,6 +191,41 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'action' => "Read User",
+                'url' => "user.read",
+                'menu_id' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'action' => "Create User",
+                'url' => "user.create",
+                'menu_id' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'action' => "Detail User",
+                'url' => "user.detail",
+                'menu_id' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'action' => "Update User",
+                'url' => "user.update",
+                'menu_id' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'action' => "Delete User",
+                'url' => "user.delete",
+                'menu_id' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
         $accesses = [
             [
@@ -314,6 +354,36 @@ class DatabaseSeeder extends Seeder
             [
                 'role_id' => 1,
                 'action_id' => 20,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'role_id' => 1,
+                'action_id' => 21,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'role_id' => 1,
+                'action_id' => 22,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'role_id' => 1,
+                'action_id' => 23,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'role_id' => 1,
+                'action_id' => 24,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'role_id' => 1,
+                'action_id' => 25,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

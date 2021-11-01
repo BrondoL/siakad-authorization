@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Action;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -13,7 +14,22 @@ class AuthController extends Controller
         $role_id = $request->role_id;
         $url = $request->url;
 
-        $action = Action::where("url", $url)->first()->accesses->where('role_id', $role_id)->first();
+        $validator = Validator::make($request->all(), [
+            'role_id' => 'required',
+            'url' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()
+            ], 422);
+        }
+
+        $action = Action::where("url", $url)->first();
+        if ($action) {
+            $action = $action->accesses->where('role_id', $role_id)->first();
+        }
         if (!$action) {
             return response()->json([
                 'success' => false,

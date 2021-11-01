@@ -54,7 +54,7 @@ class AccessController extends Controller
 
     public function show($access_id)
     {
-        $access = Access::find($access_id)->action;
+        $access = Access::find($access_id);
         if ($access) {
             return response()->json([
                 'success' => true,
