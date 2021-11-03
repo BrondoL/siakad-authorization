@@ -43,7 +43,7 @@ class ActionController extends Controller
         if (!$action) {
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal create role!',
+                'message' => 'Gagal create action!',
             ], 409);
         }
 

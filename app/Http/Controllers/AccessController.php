@@ -41,7 +41,7 @@ class AccessController extends Controller
         if (!$access) {
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal create role!',
+                'message' => 'Gagal create access!',
             ], 409);
         }
 

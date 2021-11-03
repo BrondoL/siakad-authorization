@@ -40,7 +40,7 @@ class MenuController extends Controller
         if (!$menu) {
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal create role!',
+                'message' => 'Gagal create menu!',
             ], 409);
         }
 
